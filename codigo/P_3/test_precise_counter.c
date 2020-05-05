@@ -10,13 +10,10 @@
 // code here (if you required it)...
 typedef struct __myarg_t {
     int a;
-    counter_t * b;
+    counter_t *b;
 } myarg_t;
 
-typedef struct __myret_t {
-    int x;
-    int y;
-} myret_t;
+
 /* start_routine header */
 // code here...
 
@@ -24,15 +21,6 @@ counter_t conter;
 
 void *mythread(void *arg);
 
-int 
-pthread_join(   pthread_t thread, 
-                void ** value_ptr);
-
-int
-pthread_create(     pthread_t* thread,
-                    const pthread_attr_t* attr,
-                    void* (*start_routine)(void*),
-                    void* arg);
 
 /* Global variables */
 // code here (if you required it)...
@@ -46,8 +34,8 @@ int main(int argc, char *argv[]) {
 
     /* Declaration of struct timeval variables */
     // code here...
-        struct timeval t,t2;
-        int microsegundos;
+    struct timeval t,t2;
+    int microsegundos;
 
     /* Initializing conter */
     // code here.
@@ -57,7 +45,7 @@ int main(int argc, char *argv[]) {
     /* Threads handlers */
     // code here...
 
-    myret_t *m;
+    
     int rc;
     myarg_t args;
     args.a = atoi(MAXCNT);
@@ -65,7 +53,8 @@ int main(int argc, char *argv[]) {
     
     /* Thread creation */
     // code here...
-    pthread_t p;
+    pthread_t ths[atoi(NUMTHREADS)];
+    
     /* Time starts counting */
     // code here...
 
@@ -73,18 +62,16 @@ int main(int argc, char *argv[]) {
 
     /* Creating a Threads */
     // code here...
-    int count=1;
-    while(count<=atoi(NUMTHREADS)){
-       
-
-        rc = pthread_create(&p, NULL, mythread, &args);
-        
-        count+=1;
-        // /* Threads joins */
-        // // code here...
-        pthread_join (p, NULL); 
+    int count=0;
+    for (int i = 0; i < atoi(NUMTHREADS); i++){
+        pthread_create(&ths[i], NULL, &mythread, &args);
     }
-    
+    //* Threads joins */
+        // // code here...
+    while(count<atoi(NUMTHREADS)){ 
+        pthread_join (ths[count], NULL);
+        count+=1; 
+    }    
     printf("ya sali\n");
 
     // /* Time stops counting here */
@@ -101,7 +88,9 @@ int main(int argc, char *argv[]) {
 
     // /* print the results (number threads employed, counter value, elasep time) */
     // // code here...
-     printf("%i microsegundos \n",microsegundos);
+     printf("%i Microsegundos \n",microsegundos);
+
+     printf("%d",get(&conter));
 
     return 0;
 }
@@ -116,11 +105,11 @@ void *mythread(void *arg) {
     while(get(vcount)<= vmax){
         int vcontador=get(vcount);
         int vmaximo=m->a;
-        printf("%d\n",vcontador);
+        //printf("%d\n",vcontador);
         increment(vcount);
     }
 
-    myret_t *r = malloc(sizeof(myret_t));
+    //myret_t *r = malloc(sizeof(myret_t));
     int value=get(vcount);
 
     return NULL;
