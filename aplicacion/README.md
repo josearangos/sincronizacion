@@ -43,6 +43,14 @@ Total successful loans 3302, total failed loans 698
 Number of remaining available books 6698
 ```
 
+# Resultados de la ejecución
+
+![texto alternativo](result_application_problem.png)
+
+
+
+
+
 **Recomendaciones importantes:**
 - Desarrolle un hilo por que simule el funcionamiento de cada oficina de atención.
 - No olvide verificar que la funciones de la librería estándar que utiliza en cada función hilo sean *Thread Safe*.
