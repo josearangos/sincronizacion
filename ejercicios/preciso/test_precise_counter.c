@@ -5,83 +5,67 @@
 #include "counter.h"
 
 
+/* structs */
+// code here (if you required it)...
+
 /* start_routine header */
-void* increment_count(void *);
-counter_t counter;
-int MAXCNT;
-int NUMTHREADS;
+// code here...
+
 /* Global variables */
-pthread_mutex_t global_lock; 
+// code here (if you required it)...
 
 int main(int argc, char *argv[]) { 
-    pthread_mutex_init(&global_lock, NULL);
-    MAXCNT = atoi(argv[1]);
-    NUMTHREADS = atoi(argv[2]);
-    
-    
+
+    /* get the command's line parameters */
+    // code here...
+
+
     /* Declaration of struct timeval variables */
-    struct timeval start, end;
-    long time;
-    
-    /* Initializing counter */
-    
-    
-    init(&counter);
-    //my_args args = {c : &counter, max_counter: MAXCNT };
-    
+    // code here...
+
+
+    /* Initializing conter */
+    // code here...
+
+
     /* Threads handlers */
-    pthread_t threads[NUMTHREADS];
+    // code here...
 
 
     /* Thread creation */
-    
+    // code here...
 
 
     /* Time starts counting */
-    gettimeofday(&start, NULL);
+    // code here...
 
 
     /* Creating a Threads */
-    for(int i = 0; i < NUMTHREADS; i++){
-        pthread_create(&threads[i], NULL, &increment_count,NULL);
-    }
+    // code here...
    
 
     /* Threads joins */
-    for (int j = 0; j < NUMTHREADS; j++){
-        pthread_join(threads[j],NULL);
-    }
+    // code here...
 
 
     /* Time stops counting here */
-    int end_count = get(&counter);
-    printf("final counter %d: \n", end_count);
-    
+    // code here...
 
 
     /* get the end time */
-    gettimeofday(&end, NULL);
+    // code here...
     
 
     /* get the elapset time (end_time - start_time) */
-    time = (end.tv_usec - start.tv_usec)/1000.0;
+    // code here...
 
 
     /* print the results (number threads employed, counter value, elasep time) */
-    printf("Nro hilos: %d | contador: %d | tiempo: %ld milisegundos \n",NUMTHREADS, end_count, time);
+    // code here...
 
 
     return 0;
 }
 
 /* start_routine definition */
-void* increment_count(void* unused){
-    //pthread_mutex_lock(&global_lock);
-    int current = get(&counter);
-    while(current < MAXCNT){       
-        increment(&counter);
-        current = get(&counter);    
-    }
-
-    return NULL;
-}
+// code here...
